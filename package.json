@@ -1,0 +1,24 @@
+{
+  "name": "backend-store",
+  "version": "1.0.0",
+  "description": "Backend for the Fullstack Capstone Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon src/index.js"
+  },
+  "keywords": [
+    "fullstack",
+    "shopping",
+    "store",
+    "api"
+  ],
+  "author": "M. Tirado",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.10",
+    "nodemon": "^2.0.15"
+  }
+}
