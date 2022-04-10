@@ -7,6 +7,7 @@ require('dotenv').config();
 const app = express();
 
 const productsService = require('./service/product');
+const ordersService = require('./service/order');
 const validateProduct = require('./service/validate-product');
 const PORT = process.env.PORT;
 
@@ -23,9 +24,6 @@ function connectDatabase() {
 app.use(express.json());
 app.use(cors());
 
-
-
-
 // Routing
 const productsRouter = express.Router();
 productsRouter.route("/")
@@ -34,8 +32,13 @@ productsRouter.route("/")
 productsRouter.route("/:productId")
 	.put(productsService.updateProduct)
 	.delete(productsService.deleteProduct);
-app.use("/products", productsRouter);
 
+const ordersRouter = express.Router();
+ordersRouter.route("/")
+	.post(ordersService.createOrder);
+
+app.use("/products", productsRouter);
+app.use("/orders", ordersRouter);
 
 app.listen(PORT, () => {
 	console.log(`Listening on port ${PORT}...`);

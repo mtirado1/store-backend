@@ -48,13 +48,15 @@ const ItemSchema = new mongoose.Schema(
 const OrderSchema = new mongoose.Schema(
 	{ 
 		products: [ItemSchema],
-		customerName: {
-			type: String,
-			required: true
-		},
-		customerAddress: {
-			type: String,
-			required: true
+		customer: {
+			name: {
+				type: String,
+				required: true
+			},
+			address: {
+				type: String,
+				required: true
+			}
 		}
 	},
 	{ timestamps: true }
@@ -62,8 +64,10 @@ const OrderSchema = new mongoose.Schema(
 
 const ProductModel = mongoose.model("Product", ProductSchema);
 const OrderModel = mongoose.model("Order", OrderSchema);
+const ItemModel = mongoose.model("Item", ItemSchema);
 
 module.exports = {
 	Product: ProductModel,
-	Order: OrderModel
+	Order: OrderModel,
+	Item: ItemModel
 };
