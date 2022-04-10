@@ -1,24 +1,24 @@
 const {Product} = require('../models/product');
 
 const productsRepository = {
-	getProducts: async () => {
+	get: async () => {
 		return await Product.find().lean().exec();
 	},
 
-	createProduct: async (product) => {
+	create: async (product) => {
 		const newProduct = new Product(product);
 		await newProduct.save();
 		return newProduct;
 	},
 
-	updateProduct: async (id, product) => {
+	update: async (id, product) => {
 		const updatedProduct = await Product.findByIdAndUpdate(id, product, {
 			returnDocument: "after"
 		}).lean().exec();
 		return updatedProduct;
 	},
 
-	deleteProduct: async (id) => {
+	delete: async (id) => {
 		await Product.findByIdAndDelete(id).exec();
 	}
 }

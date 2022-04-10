@@ -1,7 +1,7 @@
 const {Product, Order, Item} = require('../models/product');
 
 const ordersRepository = {
-	createOrder: async (order) => {
+	create: async (order) => {
 		const validOrder = await validateProductStock(order.products);
 		if (validOrder) {
 			const newOrder = new Order(order);

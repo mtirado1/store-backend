@@ -6,10 +6,10 @@ function internalError(response, error) {
 }
 
 const ordersService = {
-	createOrder: async (request, response) => {
+	create: async (request, response) => {
 		try {
 			const order = request.body;
-			const createdOrder = await ordersRepository.createOrder(order);
+			const createdOrder = await ordersRepository.create(order);
 			if (!createdOrder) {
 				response.status(403).json({message: "Product out of stock"});
 			} else {

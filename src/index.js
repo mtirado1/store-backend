@@ -27,15 +27,15 @@ app.use(cors());
 // Routing
 const productsRouter = express.Router();
 productsRouter.route("/")
-	.get(productsService.getProducts)
-	.post(validateProduct, productsService.createProduct);
+	.get(productsService.get)
+	.post(validateProduct, productsService.create);
 productsRouter.route("/:productId")
-	.put(productsService.updateProduct)
-	.delete(productsService.deleteProduct);
+	.put(productsService.update)
+	.delete(productsService.delete);
 
 const ordersRouter = express.Router();
 ordersRouter.route("/")
-	.post(ordersService.createOrder);
+	.post(ordersService.create);
 
 app.use("/products", productsRouter);
 app.use("/orders", ordersRouter);

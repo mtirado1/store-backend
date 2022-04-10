@@ -6,9 +6,9 @@ function internalError(response, error) {
 }
 
 const productsService = {
-	getProducts: async (request, response) => {
+	get: async (request, response) => {
 		try {
-			const products = await productsRepository.getProducts();
+			const products = await productsRepository.get();
 			response.json(products);
 		} catch (error) {
 			console.log(error);
@@ -16,21 +16,21 @@ const productsService = {
 		}
 	},
 
-	createProduct: async (request, response) => {
+	create: async (request, response) => {
 		try {
 			const product = request.body;
-			const createdProduct = await productsRepository.createProduct(product);
+			const createdProduct = await productsRepository.create(product);
 			response.status(201).json(createdProduct);
 		} catch(error) {
 			internalError(response, error);
 		}
 	},
 
-	updateProduct: async (request, response, next) => {
+	update: async (request, response, next) => {
 		try {
 			const { productId } = request.params;
 			const product = request.body;
-			const updatedProduct = await productsRepository.updateProduct(productId, product);
+			const updatedProduct = await productsRepository.update(productId, product);
 			if (!updatedProduct) {
 				response.status(404).json({message: "Product not found"});
 			}
@@ -40,10 +40,10 @@ const productsService = {
 		}
 	},
 
-	deleteProduct: async (request, response, next) => {
+	delete: async (request, response, next) => {
 		try {
 			const { productId } = request.params;
-			await productsRepository.deleteProduct(productId);
+			await productsRepository.delete(productId);
 			response.status(204).send();
 		} catch(error) {
 			internalError(response, error);
