@@ -9,6 +9,7 @@ const app = express();
 const productsService = require('./service/product');
 const ordersService = require('./service/order');
 const validateProduct = require('./service/validate-product');
+const validateOrder = require('./service/validate-order');
 const PORT = process.env.PORT;
 
 function connectDatabase() {
@@ -35,7 +36,7 @@ productsRouter.route("/:productId")
 
 const ordersRouter = express.Router();
 ordersRouter.route("/")
-	.post(ordersService.create);
+	.post(validateOrder, ordersService.create);
 
 app.use("/products", productsRouter);
 app.use("/orders", ordersRouter);
