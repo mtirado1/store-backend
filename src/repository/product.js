@@ -5,6 +5,10 @@ const productsRepository = {
 		return await Product.find().lean().exec();
 	},
 
+	getOne: async (id) => {
+		return await Product.findById(id);
+	},
+
 	create: async (product) => {
 		const newProduct = new Product(product);
 		await newProduct.save();

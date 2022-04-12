@@ -11,8 +11,21 @@ const productsService = {
 			const products = await productsRepository.get();
 			response.json(products);
 		} catch (error) {
-			console.log(error);
-			response.status(500).json({message: "Internal Error"});
+			internalError(response, error);
+		}
+	},
+
+	getOne: async (request, response) => {
+		try {
+			const { productId } = request.params;
+			const product = await productsRepository.getOne(productId);
+			if (product) {
+				response.json(product);
+			} else {
+				response.stats(404).json({message: "Product not Found"});
+			}
+		} catch (error) {
+			internalError(response, error);
 		}
 	},
 

@@ -31,6 +31,7 @@ productsRouter.route("/")
 	.get(productsService.get)
 	.post(validateProduct, productsService.create);
 productsRouter.route("/:productId")
+	.get(productsService.getOne)
 	.put(productsService.update)
 	.delete(productsService.delete);
 
