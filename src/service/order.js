@@ -13,7 +13,7 @@ const ordersService = {
 			if (!createdOrder) {
 				response.status(403).json({message: "Product out of stock"});
 			} else {
-				response.json(createdOrder);
+				response.status(201).json(createdOrder);
 			}
 		} catch(error) {
 			internalError(response, error);
