@@ -10,8 +10,8 @@ on:
     branches: [ main ]
 
 env:
-  DB_URI: ${{secret.DB_URI}}
-  PORT: ${{secret.PORT}}
+  DB_URI: ${{secrets.DB_URI}}
+  PORT: ${{secrets.PORT}}
 
 jobs:
   build:
